@@ -1,0 +1,471 @@
+ACQUISMART - AI-POWERED BUSINESS MARKETPLACE
+============================================
+
+WEBSITE TEXT EXTRACTION
+=======================
+
+HEADER/NAVIGATION
+-----------------
+- Logo: AcquiSmart
+- Navigation Items:
+  * Platform
+  * Solutions
+    - For Buyers
+    - For Sellers
+    - For Brokers
+  * Marketplace
+  * Resources
+  * About
+- Actions:
+  * Sign In
+  * Get Started
+
+METADATA
+--------
+Title: AcquiSmart - AI-Powered Business Marketplace
+Description: Discover verified businesses with AI-powered matching, comprehensive fraud protection, and secure transaction workflows.
+
+HERO SECTION
+------------
+Badge: New Platform Launch - Early Access Available
+
+Main Headline: Find Your Perfect Business Match
+
+Subheadline: We're building the first AI-powered marketplace that connects serious buyers with verified sellers. Be among our founding members and shape the future of business acquisition.
+
+Call-to-Action Buttons:
+- Start Exploring
+- Watch Demo
+
+Statistics:
+- 50+ Businesses Analyzed
+- 87% Match Accuracy
+- 12 Deals in Progress
+
+FEATURES SECTION
+----------------
+Section Title: Advanced Platform Features
+Subtitle: We're reimagining business acquisition with smart technology and human expertise. Here's what makes our platform different.
+
+Feature 1: Trust & Verification
+Every listing is verified with ML-powered fraud detection. Sellers have verified identities and credibility scores.
+
+Feature 2: AI-Driven Matching
+Our algorithm analyzes 200+ compatibility factors to connect the right buyers with the right businesses.
+
+Feature 3: Smart Alerts
+Save search criteria and get instant alerts. AI suggests relevant terms and discovers opportunities.
+
+Feature 4: NDA & Confidentiality
+Secure workflows with built-in NDAs before accessing sensitive data. Protect both buyers and sellers.
+
+Feature 5: Responsive Sellers
+We ensure only committed, responsive sellers remain on the platform. No time wasted on inactive listings.
+
+Feature 6: Automated Valuations
+Industry-benchmarked valuations that go beyond simple multiples to provide accurate business worth.
+
+HOW IT WORKS SECTION
+--------------------
+Section Title: How AcquiSmart Works
+Subtitle: Our streamlined process makes business acquisition simple and secure
+
+Step 1: Smart Discovery
+AI-powered search finds businesses that match your criteria with 95% accuracy
+
+Step 2: Verification & Due Diligence
+ML-powered fraud detection and automated verification of all listings
+
+Step 3: Secure Documentation
+Built-in NDAs and secure document sharing for sensitive information
+
+Step 4: Close the Deal
+Streamlined transaction process with escrow and legal support
+
+BUSINESS LISTINGS SECTION
+-------------------------
+Section Title: Featured Business Opportunities
+Subtitle: Explore verified businesses with transparent pricing and detailed analytics
+
+Search Placeholder: Search businesses, industries, locations...
+
+Categories: all, Technology, Retail, Services, Healthcare, Manufacturing
+
+Listing 1: Premium Coffee Shop Chain
+- Price: $350,000
+- Location: San Francisco, CA
+- Revenue: $580K/year
+- Employees: 12
+- Match Score: 95% Match
+- Status: Verified
+- Seller: Sarah Martinez
+- Rating: 4.9
+- Response Time: 2hrs avg
+- Badges: Identity Verified, High Credibility, Responsive
+- CTA: View Details & Sign NDA
+
+Listing 2: SaaS Analytics Platform
+- Price: $450,000
+- Location: Austin, TX
+- Revenue: $720K/year
+- Employees: 8
+- Match Score: 92% Match
+- Status: Verified
+- Seller: Alex Johnson
+- Rating: 4.7
+- Response Time: 4hrs avg
+- Badges: Identity Verified, Financials Verified, Responsive
+- CTA: View Details & Sign NDA
+
+Listing 3: E-commerce Fashion Brand
+- Price: $280,000
+- Location: New York, NY
+- Revenue: $450K/year
+- Employees: 6
+- Match Score: 88% Match
+- Status: Verified
+- Seller: Emma Wilson
+- Rating: 5.0
+- Response Time: 1hr avg
+- Badges: Professional License, Platinum Seller, Super Responsive
+- CTA: View Details & Sign NDA
+
+Listing 4: Digital Marketing Agency
+- Price: $520,000
+- Location: Los Angeles, CA
+- Revenue: $890K/year
+- Employees: 15
+- Match Score: 90% Match
+- Status: Verified
+- Seller: Michael Chen
+- Rating: 4.8
+- Response Time: 3hrs avg
+- Badges: Identity Verified, High Revenue, Established
+- CTA: View Details & Sign NDA
+
+Additional Action: Load More Businesses
+
+STATISTICS SECTION
+------------------
+Section Title: Early Traction & Growing Fast
+Subtitle: Join our growing community of verified buyers and sellers
+
+Statistics:
+- 25+ verified businesses - Currently on platform
+- 3 successful matches - This quarter
+- 48hrs average response time - From verified sellers
+- 15+ active buyers - Searching this month
+
+EMAIL CAPTURE SECTION
+---------------------
+Section Title: Be Part of Our Founding Community
+Subtitle: Get exclusive early access and help shape the platform. Limited spots available for beta users.
+
+User Type Selection:
+Option 1: I am a... Buyer
+Description: Looking to acquire a business
+
+Option 2: I am a... Seller
+Description: Ready to sell my business
+
+Form Fields:
+- Email Address (placeholder: your@email.com)
+
+Submit Button: Get Early Access
+
+Disclaimer: Join our exclusive beta program. Only 100 founding members will get lifetime benefits and direct input on platform features.
+
+Success Message:
+Welcome to AcquiSmart!
+Thank you for joining our waitlist. We'll be in touch soon with exclusive early access.
+
+FOOTER SECTION
+--------------
+Company Info:
+AcquiSmart
+AI-powered business marketplace revolutionizing how businesses are bought and sold.
+
+Footer Links Categories:
+
+Platform:
+- Features
+- How It Works
+- Pricing
+- Security
+
+Solutions:
+- For Buyers
+- For Sellers
+- For Brokers
+- Enterprise
+
+Resources:
+- Blog
+- Guides
+- Case Studies
+- FAQ
+
+Company:
+- About Us
+- Careers
+- Contact
+- Press
+
+Contact Information:
+- Email: support@acquismart.com
+- Phone: 1-800-ACQUISMART
+- Location: San Francisco, CA
+
+Legal Links:
+- Privacy Policy
+- Terms of Service
+- Cookie Policy
+
+Copyright: © 2024 AcquiSmart. All rights reserved.
+
+ADDITIONAL HTML PAGES CONTENT
+==============================
+
+VENTRO WEBSITE (Alternative Design)
+------------------------------------
+
+Header:
+Logo: Ventro
+Navigation:
+- Platform
+- Browse
+- My Alerts
+- Verification
+- Profile
+- Get Started
+
+Dynamic Homepage:
+Badge: AI-Powered Business Marketplace
+
+Animated Title:
+Find Your
+Perfect Business
+Match
+
+Description: Beyond traditional EBITDA valuations. Our AI analyzes 200+ factors to deliver the most accurate, unbiased business valuations in the market.
+
+CTAs:
+- Explore Platform
+- See How It Works
+
+Trust Indicators:
+- 10,000 Businesses Analyzed
+- 98% Accuracy Rate
+- 500 Deals Closed
+
+Why Ventro is Different Section:
+Traditional Brokers vs Ventro AI
+
+Traditional Brokers:
+- Primary Method: EBITDA × 3-5
+- Factors Considered: 2-3
+- Bias Factor: High
+- Market Intelligence: Manual
+
+Ventro AI:
+- Primary Method: AI Analysis
+- Factors Considered: 200+
+- Bias Factor: Zero
+- Market Intelligence: Real-time
+
+Interactive Demo:
+See Our AI in Action
+
+Sample Business:
+Sample Coffee Shop Chain
+3 locations • $580K revenue
+
+Analysis Components:
+- Financial Analysis
+- Market Intelligence
+- Risk Assessment
+- Competitive Analysis
+
+Valuation Results:
+Traditional: $240K - $400K
+Ventro AI: $385K (96% Confidence)
+
+CTA: Run Analysis Demo
+Final CTA: Ready to Experience the Future of Business Acquisition?
+Action: Explore Full Platform
+
+Platform Features:
+- Trust & Verification: Every listing is verified with ML-powered fraud detection. Sellers have verified identities and credibility scores for your peace of mind.
+- Smart Alerts & Suggestions: Save search criteria and get instant alerts for new matches. AI suggests relevant terms and discovers opportunities you might miss.
+- NDA & Confidentiality: Secure workflows with built-in NDAs before accessing sensitive data. Protect both buyers and sellers throughout the process.
+- Responsive Sellers Only: We ensure only committed, responsive sellers remain on the platform. No time wasted on inactive or unserious listings.
+
+BROKER.AI LANDING PAGE
+----------------------
+
+Header:
+Logo: Broker.AI
+
+Market Stats:
+- 70% of SMBs owned by Baby Boomers
+- $15.5T in business equity
+
+Hero Section:
+Badge: The Future of Business Acquisition
+
+Main Headline: AI-Powered Platform for Business Acquisition
+
+Subtitle: We're reinventing how small businesses are bought and sold with intelligent matching, automated valuations, and trust-based infrastructure.
+
+Market Opportunity: With 70% of small businesses owned by Baby Boomers and ~$15.5 trillion in business equity set to change hands, we're making entrepreneurship through acquisition accessible for a new generation.
+
+Email Capture Form:
+Title: Join the Future of Business Ownership
+Subtitle: Be first to access our AI-powered platform that's revolutionizing business acquisition
+
+User Types:
+- I'm a Buyer: Looking to acquire a business
+- I'm a Seller: Ready to sell my business
+
+CTA: Get Early Access
+
+Disclaimer: Join our waitlist to be among the first to experience Broker.AI. No spam, just updates on our launch and exclusive early access.
+
+Value Propositions:
+Section Title: Beyond Traditional Business Brokers
+Subtitle: We're building trust-based infrastructure, not just another listings site
+
+1. AI-Driven Matching
+Our algorithm analyzes 47+ compatibility factors to connect the right buyers with the right businesses.
+- Personalized buyer-seller matching
+- Compatibility scoring
+- Smart recommendations
+
+2. Automated Valuations
+Industry-benchmarked valuations that go beyond simple multiples to provide accurate business worth.
+- AI-powered analysis
+- Industry comparisons
+- Market-based pricing
+
+3. Risk-Flagging Tools
+Advanced diligence tools that identify potential risks and accelerate confident deal-making.
+- Automated due diligence
+- Risk assessment
+- Deal confidence scoring
+
+4. Trust & Transparency
+Building confidence through comprehensive research, accurate information, and human-first centricity.
+- Verified business information
+- Transparent processes
+- Community-driven trust
+
+5. Simplified Process
+We make complexity simple and entrepreneurship approachable for first-time business buyers.
+- Guided acquisition journey
+- Educational resources
+- Expert support
+
+6. Financial Innovation
+New financing solutions and structures that make business ownership more accessible.
+- Creative financing options
+- Acquisition funding
+- Payment innovations
+
+Market Statistics:
+The Generational Wealth Transfer
+
+Stats:
+- 70% of SMBs owned by Baby Boomers
+- $15.5T in business equity changing hands
+- 12M businesses will be sold by 2030
+
+Market Explanation:
+The Largest Wealth Transfer in History
+
+We're witnessing the largest generational wealth transfer in history as Baby Boomer business owners retire and sell their companies. Traditional business brokers and listing sites aren't equipped to handle this scale efficiently.
+
+Broker.AI is building the infrastructure to make this transition smooth, transparent, and accessible to a new generation of entrepreneurs who want to build wealth through acquisition.
+
+SEARCH FEATURES
+---------------
+
+Saved Searches:
+- Tech Companies $500K-$1M
+- Healthcare West Coast
+- + Save Current Search
+
+Search Input: AI will suggest relevant terms as you type...
+
+Suggestions:
+- SaaS businesses with recurring revenue
+- Coffee shops in urban areas
+- Healthcare practices with 5+ providers
+- Manufacturing companies under $1M
+
+Alert Toggle: Get alerts for new listings matching your criteria
+
+SELLER INFORMATION DETAILS
+--------------------------
+
+Seller Profiles Include:
+- Name with verification status
+- Credibility Score (rating out of 5)
+- Past deals count
+- Average response time
+- Trust badges (Identity Verified, Professional License, etc.)
+
+Trust Badge Types:
+- ✓ Identity Verified
+- ✓ Financials Verified
+- ✓ Professional License
+- 💎 High Credibility
+- 💎 Platinum Seller
+- ⚡ Responsive
+- ⚡ Super Responsive
+
+KEY METRICS DISPLAYED
+---------------------
+
+For Each Business Listing:
+- Price (asking price)
+- Location (city, state)
+- Annual Revenue
+- Number of Employees
+- Growth percentage
+- Match Score (AI-powered compatibility)
+- Verification status
+
+SECURITY & PRIVACY
+------------------
+
+NDA Section Text:
+- "View detailed financials"
+- "Access customer data & metrics"
+- "Patient records & practice details"
+Button: Sign NDA to Access
+
+PLATFORM DIFFERENTIATORS
+------------------------
+
+Key Messages:
+- AI-powered matching with 200+ compatibility factors
+- ML-powered fraud detection
+- Automated business valuations
+- Industry-benchmarked pricing
+- Secure transaction workflows
+- Built-in confidentiality protection
+- Verified seller identities
+- Credibility scoring system
+- Response time tracking
+- Smart search suggestions
+- Real-time alerts for new matches
+
+Target Audiences:
+- First-time business buyers
+- Serious investors
+- Retiring business owners
+- Growth-focused entrepreneurs
+- Professional brokers
+
+END OF TEXT EXTRACTION
+======================
