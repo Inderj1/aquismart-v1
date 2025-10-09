@@ -9,10 +9,14 @@ const onest = Onest({
 });
 
 export const metadata: Metadata = {
-  title: "MindSpace - template built with shadcndesign.com",
+  title: "AcquiSmart - AI-Powered Business Marketplace",
   description:
-    "MindSpace is a modern and clean SaaS shadcn/ui template built with Pro Blocks",
-    generator: 'v0.app'
+    "Discover verified businesses with AI-powered matching, comprehensive fraud protection, and secure transaction workflows.",
+  icons: {
+    icon: '/image.png',
+    apple: '/image.png',
+  },
+  generator: 'v0.app'
 };
 
 export default function RootLayout({
