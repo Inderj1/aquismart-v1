@@ -7,11 +7,11 @@ import { useState } from "react";
 import Link from "next/link";
 
 const MENU_ITEMS = [
-  { label: "Platform", href: "/platform" },
-  { label: "Solutions", href: "/solutions" },
-  { label: "Marketplace", href: "/marketplace" },
-  { label: "Resources", href: "/resources" },
-  { label: "About", href: "/about" },
+  // { label: "Platform", href: "/platform" },
+  // { label: "Solutions", href: "/solutions" },
+  // { label: "Marketplace", href: "/marketplace" },
+  // { label: "Resources", href: "/resources" },
+  // { label: "About", href: "/about" },
 ] as const;
 
 interface NavMenuItemsProps {
@@ -55,8 +55,8 @@ export function LpNavbar1() {
         {/* Desktop Navigation */}
         <div className="hidden w-full flex-row justify-end gap-5 md:flex">
           <NavMenuItems />
-          <Link href="#pricing">
-            <Button>Get Started</Button>
+          <Link href="/early-access">
+            <Button>Join for Early Access</Button>
           </Link>
         </div>
 
@@ -64,8 +64,8 @@ export function LpNavbar1() {
         {isMenuOpen && (
           <div className="flex w-full flex-col justify-end gap-5 pb-2.5 md:hidden">
             <NavMenuItems />
-            <Link href="#pricing">
-              <Button className="w-full">Get Started</Button>
+            <Link href="/early-access">
+              <Button className="w-full">Join for Early Access</Button>
             </Link>
           </div>
         )}

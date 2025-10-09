@@ -30,7 +30,7 @@ export default function Page() {
         authorRole="Business Owner at Kurt Consulting"
         avatarSrc="/MonicaKurt.png"
       />
-      <PricingSection3 />
+      {/* <PricingSection3 /> */}
       <FaqSection2 />
       <Footer1 />
     </main>

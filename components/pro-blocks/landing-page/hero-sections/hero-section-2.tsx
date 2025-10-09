@@ -59,27 +59,20 @@ export function HeroSection2() {
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button>Start Exploring</Button>
-            <Button variant="ghost">
-              Watch Demo
-              <ArrowRight />
-            </Button>
-          </div>
         </div>
 
         {/* Right Column */}
         <div className="w-full flex-1">
-          <AspectRatio ratio={1 / 1}>
-            <Image
-              src="/property1.jpeg"
-              alt="Business property showcasing AcquiSmart marketplace"
-              fill
-              priority
-              className="h-full w-full rounded-xl object-cover"
+          <div className="relative aspect-square w-full overflow-hidden rounded-xl">
+            <video
+              src="/video1.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover scale-110"
             />
-          </AspectRatio>
+          </div>
         </div>
       </div>
     </section>
