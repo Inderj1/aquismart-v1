@@ -166,7 +166,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="bg-background section-padding-y border-b">
+      {/* <section className="bg-background section-padding-y border-b">
         <div className="container-padding-x container mx-auto">
           <div className="section-title-gap-lg mx-auto flex max-w-xl flex-col items-center text-center mb-10 md:mb-12">
             <Tagline>Our Team</Tagline>
@@ -204,7 +204,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Milestones */}
       <section className="bg-secondary section-padding-y border-b">
