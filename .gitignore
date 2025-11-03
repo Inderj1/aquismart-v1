@@ -1,14 +1,22 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
+frontend/node_modules
+backend/*/node_modules
+.pnp
+.pnp.js
 
 # next.js
-/.next/
-/out/
+.next/
+out/
+frontend/.next/
+frontend/out/
 
 # production
-/build
+build
+dist
+frontend/build
 
 # debug
 npm-debug.log*
@@ -17,7 +25,9 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files
+.env
 .env*
+.env*.local
 
 # vercel
 .vercel
@@ -25,3 +35,47 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/svc-ai-*/__pycache__/
+backend/svc-ai-*/venv/
+backend/svc-ai-*/.venv/
+*.egg-info/
+.pytest_cache/
+
+# ML/Data
+ml/models/*.pth
+ml/models/*.pt
+ml/models/*.ckpt
+ml/training/datasets/
+ml/training/checkpoints/
+mlruns/
+.mlflow/
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.sqlite
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes
+postgres_data/
+redis_data/
+opensearch_data/

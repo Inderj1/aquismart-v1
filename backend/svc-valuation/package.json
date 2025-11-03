@@ -1,0 +1,30 @@
+{
+  "name": "@acquismart/svc-valuation",
+  "version": "1.0.0",
+  "description": "Equity and credit valuation service",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "drizzle-orm": "^0.30.9",
+    "mathjs": "^12.4.1",
+    "axios": "^1.6.8",
+    "winston": "^3.13.0",
+    "zod": "^3.23.8",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5",
+    "tsx": "^4.7.2",
+    "jest": "^29.7.0"
+  }
+}

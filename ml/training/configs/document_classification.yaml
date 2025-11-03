@@ -1,0 +1,41 @@
+# Document Classification Model Training Config
+
+model:
+  name: "document-classifier"
+  type: "layoutlm-v3"
+  pretrained: "microsoft/layoutlmv3-base"
+  num_labels: 6  # capital_account, quarterly_financials, loan_agreement, covenant_calc, board_deck, other
+
+training:
+  epochs: 10
+  batch_size: 8
+  learning_rate: 5e-5
+  warmup_steps: 500
+  weight_decay: 0.01
+  gradient_accumulation_steps: 2
+  mixed_precision: true
+  early_stopping_patience: 3
+
+data:
+  train_path: "datasets/documents/train"
+  val_path: "datasets/documents/val"
+  test_path: "datasets/documents/test"
+  max_seq_length: 512
+  image_size: [224, 224]
+  augmentation: true
+
+optimization:
+  optimizer: "adamw"
+  scheduler: "linear"
+  max_grad_norm: 1.0
+
+logging:
+  experiment_name: "doc-classification-v1"
+  log_interval: 10
+  save_steps: 500
+  eval_steps: 500
+  mlflow_tracking_uri: "http://mlflow:5000"
+
+output:
+  model_dir: "models/document-classification"
+  checkpoint_dir: "checkpoints/document-classification"
