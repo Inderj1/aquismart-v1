@@ -1,0 +1,486 @@
+[
+  {
+    "id": "1",
+    "name": "SaaS Analytics Platform",
+    "industry": "Technology",
+    "location": "Austin, TX",
+    "askingPrice": 12500000,
+    "revenue": 2500000,
+    "ebitda": 1250000,
+    "description": "Established SaaS platform providing advanced analytics and business intelligence tools for mid-market companies. Features include real-time dashboards, custom reporting, and API integrations. Strong recurring revenue with 200+ enterprise clients and 95% retention rate. Built on modern tech stack with scalable AWS infrastructure.",
+    "yearEstablished": 2018,
+    "employees": 25,
+    "matchScore": 92,
+    "isFeatured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 1000000,
+      "assets": 7500000.0,
+      "liabilities": 1250000.0
+    },
+    "highlights": [
+      "200+ enterprise clients with 95% retention rate",
+      "40% YoY growth over the past 3 years",
+      "Modern tech stack with scalable infrastructure",
+      "Recurring revenue model with annual contracts",
+      "Strong brand presence in the industry"
+    ],
+    "reasonForSelling": "Founder looking to pursue a new venture",
+    "url": "https://www.bizbuysell.com/business/1",
+    "scraped_at": "2025-11-01T21:57:59.866470"
+  },
+  {
+    "id": "2",
+    "name": "Premium Outdoor Gear E-commerce",
+    "industry": "Retail",
+    "location": "Denver, CO",
+    "askingPrice": 8000000,
+    "revenue": 3200000,
+    "ebitda": 960000,
+    "description": "Thriving e-commerce business specializing in premium outdoor gear and equipment. Strong brand loyalty with engaged customer base of 50,000+ outdoor enthusiasts. Excellent margins on curated product selection. Multiple revenue streams including direct sales, affiliate partnerships, and sponsored content.",
+    "yearEstablished": 2015,
+    "employees": 12,
+    "matchScore": 75,
+    "isFeatured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
+      "https://images.unsplash.com/photo-1445991842772-097fea258e7b?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 850000,
+      "assets": 4800000.0,
+      "liabilities": 800000.0
+    },
+    "highlights": [
+      "50,000+ active customers with 65% repeat purchase rate",
+      "Strong social media presence (100K+ followers)",
+      "Diversified supplier relationships",
+      "Owned warehouse and inventory system"
+    ],
+    "reasonForSelling": "Owner relocating out of state for family reasons",
+    "url": "https://www.bizbuysell.com/business/2",
+    "scraped_at": "2025-11-01T21:57:59.866479"
+  },
+  {
+    "id": "3",
+    "name": "Medical Billing Services Company",
+    "industry": "Healthcare",
+    "location": "Phoenix, AZ",
+    "askingPrice": 5400000,
+    "revenue": 1800000,
+    "ebitda": 720000,
+    "description": "Professional medical billing and coding services serving 75+ healthcare providers across multiple states. Excellent relationships with insurance companies and proven track record of maximizing reimbursements. HIPAA compliant systems and experienced certified staff.",
+    "yearEstablished": 2012,
+    "employees": 35,
+    "matchScore": 91,
+    "isFeatured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 650000,
+      "assets": 3240000.0,
+      "liabilities": 540000.0
+    },
+    "highlights": [
+      "75+ healthcare provider clients",
+      "Average client relationship of 8+ years",
+      "HIPAA compliant systems and processes",
+      "Proprietary software for claims management"
+    ],
+    "reasonForSelling": "Retirement - owner ready to exit after 12 successful years",
+    "url": "https://www.bizbuysell.com/business/3",
+    "scraped_at": "2025-11-01T21:57:59.866483"
+  },
+  {
+    "id": "4",
+    "name": "Specialty Coffee Roastery Chain",
+    "industry": "Food & Beverage",
+    "location": "Seattle, WA",
+    "askingPrice": 7500000,
+    "revenue": 2800000,
+    "ebitda": 840000,
+    "description": "Popular coffee roastery with 5 retail locations and wholesale distribution to 50+ cafes and restaurants. Known for single-origin beans and expert roasting. Strong community following and excellent online presence. Opportunities for expansion.",
+    "yearEstablished": 2014,
+    "employees": 28,
+    "matchScore": 80,
+    "isFeatured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=80",
+      "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 750000,
+      "assets": 4500000.0,
+      "liabilities": 750000.0
+    },
+    "highlights": [
+      "5 profitable retail locations",
+      "Wholesale accounts with 50+ businesses",
+      "Award-winning roasting techniques",
+      "Strong brand recognition in region"
+    ],
+    "reasonForSelling": "Owner wants to focus on family",
+    "url": "https://www.bizbuysell.com/business/4",
+    "scraped_at": "2025-11-01T21:57:59.866486"
+  },
+  {
+    "id": "5",
+    "name": "Digital Marketing Agency",
+    "industry": "Professional Services",
+    "location": "Remote (HQ: San Francisco, CA)",
+    "askingPrice": 6200000,
+    "revenue": 2100000,
+    "ebitda": 840000,
+    "description": "Full-service digital marketing agency specializing in B2B lead generation. Services include SEO, PPC, content marketing, and marketing automation. 40+ active retainer clients with average relationship of 3+ years. Fully remote team with strong systems and processes.",
+    "yearEstablished": 2016,
+    "employees": 18,
+    "matchScore": 82,
+    "isFeatured": true,
+    "images": [
+      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 780000,
+      "assets": 3720000.0,
+      "liabilities": 620000.0
+    },
+    "highlights": [
+      "40+ active retainer clients",
+      "92% client retention rate",
+      "Fully remote, location-independent",
+      "Proven systems and SOPs"
+    ],
+    "reasonForSelling": "Founder starting new venture in different industry",
+    "url": "https://www.bizbuysell.com/business/5",
+    "scraped_at": "2025-11-01T21:57:59.866488"
+  },
+  {
+    "id": "6",
+    "name": "Custom Packaging Manufacturing",
+    "industry": "Manufacturing",
+    "location": "Chicago, IL",
+    "askingPrice": 15000000,
+    "revenue": 4100000,
+    "ebitda": 1640000,
+    "description": "B2B custom packaging manufacturer serving food and beverage industry. State-of-the-art facility with modern equipment. Long-term contracts with major brands. Strong margins and consistent cash flow. Opportunities for automation and expansion.",
+    "yearEstablished": 2010,
+    "employees": 45,
+    "matchScore": 95,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 1500000,
+      "assets": 9000000.0,
+      "liabilities": 1500000.0
+    },
+    "highlights": [
+      "30+ enterprise clients with multi-year contracts",
+      "Modern 50,000 sq ft facility (owned)",
+      "Eco-friendly product line gaining traction",
+      "Consistent 15% profit margins"
+    ],
+    "reasonForSelling": "Owner pursuing larger acquisition opportunity",
+    "url": "https://www.bizbuysell.com/business/6",
+    "scraped_at": "2025-11-01T21:57:59.866490"
+  },
+  {
+    "id": "7",
+    "name": "Physical Therapy Clinic Group",
+    "industry": "Healthcare",
+    "location": "Atlanta, GA",
+    "askingPrice": 4800000,
+    "revenue": 1600000,
+    "ebitda": 640000,
+    "description": "Three established physical therapy clinics in growing suburban markets. Mix of cash and insurance patients. Experienced staff willing to stay. Strong reputation and referral network. Excellent opportunity for healthcare professional or practice management group.",
+    "yearEstablished": 2011,
+    "employees": 22,
+    "matchScore": 87,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 580000,
+      "assets": 2880000.0,
+      "liabilities": 480000.0
+    },
+    "highlights": [
+      "3 profitable clinic locations",
+      "Experienced staff with low turnover",
+      "Strong referral network with physicians",
+      "Mix of cash and insurance revenue"
+    ],
+    "reasonForSelling": "Owner health issues requiring retirement",
+    "url": "https://www.bizbuysell.com/business/7",
+    "scraped_at": "2025-11-01T21:57:59.866491"
+  },
+  {
+    "id": "8",
+    "name": "Boutique Fitness Studio",
+    "industry": "Health & Fitness",
+    "location": "Miami, FL",
+    "askingPrice": 950000,
+    "revenue": 480000,
+    "ebitda": 192000,
+    "description": "High-end boutique fitness studio with strong membership base and excellent retention. Offers small group training, personal training, and specialized classes. Prime location with 5-year lease. Turnkey operation with experienced staff.",
+    "yearEstablished": 2017,
+    "employees": 8,
+    "matchScore": 83,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 175000,
+      "assets": 570000.0,
+      "liabilities": 95000.0
+    },
+    "highlights": [
+      "250+ active members",
+      "85% retention rate",
+      "Prime location with parking",
+      "Fully equipped and modern"
+    ],
+    "reasonForSelling": "Owner moving to different city",
+    "url": "https://www.bizbuysell.com/business/8",
+    "scraped_at": "2025-11-01T21:57:59.866493"
+  },
+  {
+    "id": "9",
+    "name": "Managed IT Services Provider",
+    "industry": "Technology",
+    "location": "Boston, MA",
+    "askingPrice": 9200000,
+    "revenue": 3100000,
+    "ebitda": 1240000,
+    "description": "Established MSP serving 80+ small and medium businesses. Comprehensive services including network management, cybersecurity, cloud solutions, and help desk. Recurring revenue model with excellent margins. Remote monitoring tools and NOC infrastructure in place.",
+    "yearEstablished": 2013,
+    "employees": 32,
+    "matchScore": 90,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 1100000,
+      "assets": 5520000.0,
+      "liabilities": 920000.0
+    },
+    "highlights": [
+      "80+ business clients with MRR of $260K",
+      "95% recurring revenue",
+      "Strong cybersecurity practice",
+      "Experienced technical team"
+    ],
+    "reasonForSelling": "Founder accepting executive role at enterprise company",
+    "url": "https://www.bizbuysell.com/business/9",
+    "scraped_at": "2025-11-01T21:57:59.866495"
+  },
+  {
+    "id": "10",
+    "name": "Craft Brewery & Taproom",
+    "industry": "Food & Beverage",
+    "location": "Portland, OR",
+    "askingPrice": 5600000,
+    "revenue": 1900000,
+    "ebitda": 570000,
+    "description": "Award-winning craft brewery with popular taproom and distribution to 200+ retail accounts across three states. Known for innovative IPAs and seasonal releases. Food service partnership generates additional revenue. Great community engagement and brand loyalty.",
+    "yearEstablished": 2015,
+    "employees": 19,
+    "matchScore": 89,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 520000,
+      "assets": 3360000.0,
+      "liabilities": 560000.0
+    },
+    "highlights": [
+      "Award-winning beers with loyal following",
+      "200+ retail distribution accounts",
+      "Popular taproom with food service",
+      "Modern brewing equipment"
+    ],
+    "reasonForSelling": "Partners pursuing separate opportunities",
+    "url": "https://www.bizbuysell.com/business/10",
+    "scraped_at": "2025-11-01T21:57:59.866496"
+  },
+  {
+    "id": "11",
+    "name": "E-Learning Platform",
+    "industry": "Education",
+    "location": "Remote (HQ: New York, NY)",
+    "askingPrice": 8800000,
+    "revenue": 2200000,
+    "ebitda": 1100000,
+    "description": "B2C e-learning platform offering professional development courses. 15,000+ active students, 200+ courses covering business, technology, and creative skills. Subscription and course-based revenue model. Content created by 50+ expert instructors.",
+    "yearEstablished": 2017,
+    "employees": 15,
+    "matchScore": 90,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 950000,
+      "assets": 5280000.0,
+      "liabilities": 880000.0
+    },
+    "highlights": [
+      "15,000+ active paying students",
+      "200+ high-quality courses",
+      "70% gross margins",
+      "Growing market demand"
+    ],
+    "reasonForSelling": "Founder wants to travel and work on passion projects",
+    "url": "https://www.bizbuysell.com/business/11",
+    "scraped_at": "2025-11-01T21:57:59.866498"
+  },
+  {
+    "id": "12",
+    "name": "Commercial Cleaning Service",
+    "industry": "Professional Services",
+    "location": "Dallas, TX",
+    "askingPrice": 3200000,
+    "revenue": 1400000,
+    "ebitda": 420000,
+    "description": "Commercial cleaning company serving office buildings, medical facilities, and retail spaces. 120+ recurring clients with long-term contracts. Well-trained staff, modern equipment, and proven systems. Excellent reputation and high client satisfaction.",
+    "yearEstablished": 2009,
+    "employees": 65,
+    "matchScore": 87,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 380000,
+      "assets": 1920000.0,
+      "liabilities": 320000.0
+    },
+    "highlights": [
+      "120+ recurring contracts",
+      "Avg client relationship of 5+ years",
+      "Low employee turnover",
+      "Strong operational systems"
+    ],
+    "reasonForSelling": "Retirement after 15 years",
+    "url": "https://www.bizbuysell.com/business/12",
+    "scraped_at": "2025-11-01T21:57:59.866499"
+  },
+  {
+    "id": "13",
+    "name": "Pet Grooming & Daycare",
+    "industry": "Retail",
+    "location": "San Diego, CA",
+    "askingPrice": 1800000,
+    "revenue": 720000,
+    "ebitda": 288000,
+    "description": "Upscale pet grooming salon and daycare facility in affluent neighborhood. State-of-the-art facility with modern equipment. Strong recurring revenue from daycare memberships. Excellent reputation and 5-star reviews. Opportunities for expansion.",
+    "yearEstablished": 2016,
+    "employees": 12,
+    "matchScore": 92,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 250000,
+      "assets": 1080000.0,
+      "liabilities": 180000.0
+    },
+    "highlights": [
+      "Modern 4,000 sq ft facility",
+      "250+ regular clients",
+      "5-star reputation",
+      "High-income demographic"
+    ],
+    "reasonForSelling": "Owner relocating for family reasons",
+    "url": "https://www.bizbuysell.com/business/13",
+    "scraped_at": "2025-11-01T21:57:59.866501"
+  },
+  {
+    "id": "14",
+    "name": "Mobile App Development Studio",
+    "industry": "Technology",
+    "location": "Remote (HQ: Los Angeles, CA)",
+    "askingPrice": 4500000,
+    "revenue": 1500000,
+    "ebitda": 600000,
+    "description": "Boutique mobile app development studio specializing in iOS and Android apps for startups and SMBs. Portfolio of 100+ successful apps. Recurring revenue from maintenance contracts and ongoing projects. Talented team with low turnover.",
+    "yearEstablished": 2014,
+    "employees": 16,
+    "matchScore": 93,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 540000,
+      "assets": 2700000.0,
+      "liabilities": 450000.0
+    },
+    "highlights": [
+      "100+ successful app launches",
+      "35% recurring revenue from maintenance",
+      "Strong portfolio and case studies",
+      "Fully remote team"
+    ],
+    "reasonForSelling": "Founder accepting CTO role at startup",
+    "url": "https://www.bizbuysell.com/business/14",
+    "scraped_at": "2025-11-01T21:57:59.866503"
+  },
+  {
+    "id": "15",
+    "name": "HVAC Service Company",
+    "industry": "Construction",
+    "location": "Charlotte, NC",
+    "askingPrice": 6800000,
+    "revenue": 2400000,
+    "ebitda": 960000,
+    "description": "Established HVAC installation and service company serving residential and light commercial customers. 85% recurring revenue from maintenance contracts. Fleet of 12 vehicles, modern equipment, and skilled technicians. Strong reputation in local market.",
+    "yearEstablished": 2008,
+    "employees": 28,
+    "matchScore": 81,
+    "isFeatured": false,
+    "images": [
+      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
+    ],
+    "status": "active",
+    "financials": {
+      "cashFlow": 850000,
+      "assets": 4080000.0,
+      "liabilities": 680000.0
+    },
+    "highlights": [
+      "1,800+ maintenance contract customers",
+      "85% recurring revenue",
+      "Fleet of 12 service vehicles",
+      "Strong brand in market"
+    ],
+    "reasonForSelling": "Owner wants to semi-retire",
+    "url": "https://www.bizbuysell.com/business/15",
+    "scraped_at": "2025-11-01T21:57:59.866504"
+  }
+]

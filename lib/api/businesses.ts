@@ -1,6 +1,6 @@
 // API client for business/deal-related endpoints
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 export interface BusinessSearchParams {
   q?: string;
@@ -56,7 +56,15 @@ export interface BuyerProfile {
 }
 
 async function fetchAPI(endpoint: string, options: RequestInit = {}) {
-  const url = `${API_BASE_URL}${endpoint}`;
+  // Handle both server-side and client-side requests
+  let url: string;
+  if (typeof window === 'undefined') {
+    // Server-side: use localhost
+    url = `http://localhost:3344/api${endpoint}`;
+  } else {
+    // Client-side: use relative URL
+    url = `/api${endpoint}`;
+  }
 
   const token = typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
 
@@ -137,7 +145,7 @@ export const businessApi = {
    * Get user's saved businesses
    */
   async getSaved(): Promise<{ success: boolean; data: SavedBusiness[] }> {
-    return fetchAPI('/businesses/users/me/saved');
+    return fetchAPI('/businesses/saved');
   },
 
   /**
