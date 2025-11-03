@@ -1,0 +1,24 @@
+# Example Terraform variables
+# Copy this to terraform.tfvars and fill in your values
+
+# Your SSH public key (run: cat ~/.ssh/acquismart-key.pub)
+ssh_public_key = "ssh-rsa AAAAB3NzaC1... your-email@example.com"
+
+# Your IP address for SSH access (for security)
+# Get your IP: curl ifconfig.me
+ssh_allowed_ips = ["0.0.0.0/0"]  # Change to ["YOUR.IP.ADDRESS/32"] for better security
+
+# AWS Region
+aws_region = "us-east-1"
+
+# Instance type (t2.micro is free tier eligible)
+instance_type = "t2.micro"
+
+# Environment
+environment = "production"
+
+# GitHub repository (already set, change if you forked)
+github_repo = "https://github.com/Inderj1/aquismart-v1.git"
+
+# Domain name
+domain_name = "acquismart.ai"
