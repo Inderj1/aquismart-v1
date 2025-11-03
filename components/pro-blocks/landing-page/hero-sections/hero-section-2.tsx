@@ -26,6 +26,31 @@ export function HeroSection2() {
       setFeaturedDeals(response.data.slice(0, 2));
     } catch (err) {
       console.error('Error loading featured deals:', err);
+      // Use mock data as fallback
+      setFeaturedDeals([
+        {
+          id: '1',
+          name: 'Profitable SaaS Platform',
+          industry: 'Technology',
+          location: 'San Francisco, CA',
+          askingPrice: 2500000,
+          revenue: 1200000,
+          description: 'Established B2B SaaS platform with recurring revenue and strong customer retention',
+          yearEstablished: 2018,
+          status: 'active' as const
+        },
+        {
+          id: '2',
+          name: 'E-commerce Fashion Brand',
+          industry: 'Retail',
+          location: 'New York, NY',
+          askingPrice: 850000,
+          revenue: 650000,
+          description: 'Growing online fashion retailer with loyal customer base and profitable operations',
+          yearEstablished: 2020,
+          status: 'active' as const
+        }
+      ]);
     } finally {
       setLoading(false);
     }
@@ -87,9 +112,9 @@ export function HeroSection2() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-6 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-6 mb-6 max-w-6xl mx-auto items-stretch">
           {/* Featured Deals Column */}
-          <div className="space-y-3">
+          <div className="space-y-3 flex flex-col h-full">
             <h2 className="text-xl font-bold">Featured Opportunities</h2>
             {loading ? (
               <div className="flex justify-center py-12">
@@ -136,17 +161,15 @@ export function HeroSection2() {
           </div>
 
           {/* Video Column */}
-          <div className="h-full">
-            <div className="relative w-full h-full overflow-hidden rounded-xl shadow-lg">
-              <video
-                src="/video1.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
+          <div className="relative w-full h-full min-h-[300px] overflow-hidden rounded-xl shadow-lg">
+            <video
+              src="/video1.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+            />
           </div>
         </div>
 
@@ -163,9 +186,6 @@ export function HeroSection2() {
             <Sparkles className="mr-2 h-5 w-5" />
             Get Matched
           </Button>
-          <p className="text-xs text-muted-foreground">
-            Answer 3 quick questions to get personalized recommendations
-          </p>
         </div>
 
         {/* Trust Indicators */}
