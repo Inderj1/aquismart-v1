@@ -22,6 +22,7 @@ import {
   Briefcase,
   FileText,
   UserCheck,
+  Lock,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -33,12 +34,20 @@ export default function BusinessDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const [isSaved, setIsSaved] = useState(false);
   const [isInterestExpressed, setIsInterestExpressed] = useState(false);
+  const [hasProfile, setHasProfile] = useState(false);
 
   useEffect(() => {
     if (params.id) {
       loadBusiness(params.id as string);
     }
   }, [params.id]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const profile = localStorage.getItem('welcomeProfile') || localStorage.getItem('buyerProfile');
+      setHasProfile(!!profile);
+    }
+  }, []);
 
   const loadBusiness = async (id: string) => {
     try {
@@ -315,6 +324,11 @@ export default function BusinessDetailPage() {
           <Card>
             <CardHeader>
               <CardTitle>Financial Overview</CardTitle>
+              {!hasProfile && (
+                <p className="text-sm text-muted-foreground">
+                  Sign up to view revenue and profitability details
+                </p>
+              )}
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -332,9 +346,16 @@ export default function BusinessDetailPage() {
                     <TrendingUp className="h-4 w-4 mr-1" />
                     Annual Revenue
                   </div>
-                  <div className="text-2xl font-bold">
-                    {formatCurrency(business.revenue)}
-                  </div>
+                  {hasProfile ? (
+                    <div className="text-2xl font-bold">
+                      {formatCurrency(business.revenue)}
+                    </div>
+                  ) : (
+                    <div className="flex items-center text-lg text-muted-foreground">
+                      <Lock className="h-4 w-4 mr-2" />
+                      Not Disclosed
+                    </div>
+                  )}
                 </div>
                 {business.ebitda && (
                   <div>
@@ -342,13 +363,30 @@ export default function BusinessDetailPage() {
                       <TrendingUp className="h-4 w-4 mr-1" />
                       EBITDA
                     </div>
-                    <div className="text-2xl font-bold">
-                      {formatCurrency(business.ebitda)}
-                    </div>
+                    {hasProfile ? (
+                      <div className="text-2xl font-bold">
+                        {formatCurrency(business.ebitda)}
+                      </div>
+                    ) : (
+                      <div className="flex items-center text-lg text-muted-foreground">
+                        <Lock className="h-4 w-4 mr-2" />
+                        Not Disclosed
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
-              {business.financials && (
+              {!hasProfile && (
+                <div className="pt-6 border-t mt-6">
+                  <Link href="/marketplace/welcome">
+                    <Button className="w-full" size="lg">
+                      <Lock className="h-4 w-4 mr-2" />
+                      Sign Up to View Revenue & EBITDA
+                    </Button>
+                  </Link>
+                </div>
+              )}
+              {hasProfile && business.financials && (
                 <>
                   <Separator className="my-6" />
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -458,24 +496,33 @@ export default function BusinessDetailPage() {
               </p>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Button
-                className="w-full"
-                size="lg"
-                onClick={handleExpressInterest}
-                disabled={isInterestExpressed}
-              >
-                {isInterestExpressed ? (
-                  <>
-                    <CheckCircle2 className="h-4 w-4 mr-2" />
-                    Interest Expressed
-                  </>
-                ) : (
-                  <>
-                    <MessageSquare className="h-4 w-4 mr-2" />
-                    Express Interest
-                  </>
-                )}
-              </Button>
+              {hasProfile ? (
+                <Button
+                  className="w-full"
+                  size="lg"
+                  onClick={handleExpressInterest}
+                  disabled={isInterestExpressed}
+                >
+                  {isInterestExpressed ? (
+                    <>
+                      <CheckCircle2 className="h-4 w-4 mr-2" />
+                      Interest Expressed
+                    </>
+                  ) : (
+                    <>
+                      <MessageSquare className="h-4 w-4 mr-2" />
+                      Express Interest
+                    </>
+                  )}
+                </Button>
+              ) : (
+                <Link href="/marketplace/welcome">
+                  <Button className="w-full" size="lg">
+                    <Lock className="h-4 w-4 mr-2" />
+                    Sign Up to Express Interest
+                  </Button>
+                </Link>
+              )}
 
               <Separator />
 

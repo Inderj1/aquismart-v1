@@ -184,10 +184,10 @@ export default function GoWildPage() {
       <div className="container mx-auto px-6 py-6">
         {/* Header */}
         <div className="mb-6">
-          <Link href="/marketplace/matches">
+          <Link href="/marketplace">
             <Button variant="ghost" className="mb-3">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Matches
+              Back to Businesses
             </Button>
           </Link>
 

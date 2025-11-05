@@ -3,45 +3,66 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-
-const MENU_ITEMS = [
-  { label: "Businesses", href: "/marketplace" },
-  { label: "About", href: "/about" },
-  { label: "Login", href: "/login" },
-] as const;
 
 interface NavMenuItemsProps {
   className?: string;
+  isLoggedIn: boolean;
+  onLogout: () => void;
 }
 
-const NavMenuItems = ({ className }: NavMenuItemsProps) => (
+const NavMenuItems = ({ className, isLoggedIn, onLogout }: NavMenuItemsProps) => (
   <div className={`flex flex-col gap-1 md:flex-row ${className ?? ""}`}>
-    {MENU_ITEMS.map(({ label, href }) => (
-      <Link key={label} href={href}>
+    <Link href="/about">
+      <Button variant="ghost" className="w-full md:w-auto">
+        About
+      </Button>
+    </Link>
+    {isLoggedIn ? (
+      <Button
+        variant="ghost"
+        className="w-full md:w-auto"
+        onClick={onLogout}
+      >
+        Logout
+      </Button>
+    ) : (
+      <Link href="/login">
         <Button variant="ghost" className="w-full md:w-auto">
-          {label}
+          Login
         </Button>
       </Link>
-    ))}
+    )}
   </div>
 );
 
 export function LpNavbar1() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isOnDashboard, setIsOnDashboard] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
-    // Check if user is logged in by checking if they're on a dashboard route
-    const onDashboard = pathname?.startsWith("/dashboard") || false;
-    setIsLoggedIn(onDashboard);
-    setIsOnDashboard(onDashboard);
+    // Check if user has a profile (logged in)
+    if (typeof window !== 'undefined') {
+      const profile = localStorage.getItem('welcomeProfile') || localStorage.getItem('buyerProfile');
+      setIsLoggedIn(!!profile);
+    }
   }, [pathname]);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+
+  const handleLogout = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('welcomeProfile');
+      localStorage.removeItem('buyerProfile');
+      localStorage.removeItem('expertModeProfile');
+      setIsLoggedIn(false);
+      setIsMenuOpen(false);
+      router.push('/');
+    }
+  };
 
   return (
     <nav className="bg-background sticky top-0 isolate z-50 border-b py-2.5 md:py-3">
@@ -65,12 +86,8 @@ export function LpNavbar1() {
 
         {/* Desktop Navigation */}
         <div className="hidden w-full flex-row justify-end gap-5 md:flex">
-          {!isLoggedIn && <NavMenuItems />}
-          {isLoggedIn ? (
-            <Link href="/">
-              <Button variant="ghost">Home</Button>
-            </Link>
-          ) : (
+          <NavMenuItems isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+          {!isLoggedIn && (
             <Link href="/early-access">
               <Button>Join for Early Access</Button>
             </Link>
@@ -80,12 +97,8 @@ export function LpNavbar1() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="flex w-full flex-col justify-end gap-5 pb-2.5 md:hidden">
-            {!isLoggedIn && <NavMenuItems />}
-            {isLoggedIn ? (
-              <Link href="/">
-                <Button variant="ghost" className="w-full">Home</Button>
-              </Link>
-            ) : (
+            <NavMenuItems isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+            {!isLoggedIn && (
               <Link href="/early-access">
                 <Button className="w-full">Join for Early Access</Button>
               </Link>

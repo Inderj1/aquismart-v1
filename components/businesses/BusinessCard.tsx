@@ -3,8 +3,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Building2, MapPin, DollarSign, TrendingUp, Star } from "lucide-react";
+import { Building2, MapPin, DollarSign, TrendingUp, Star, Lock } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export interface Business {
   id: string;
@@ -28,6 +29,15 @@ interface BusinessCardProps {
 }
 
 export function BusinessCard({ business, showMatchScore = false }: BusinessCardProps) {
+  const [hasProfile, setHasProfile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const profile = localStorage.getItem('welcomeProfile') || localStorage.getItem('buyerProfile');
+      setHasProfile(!!profile);
+    }
+  }, []);
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -97,7 +107,14 @@ export function BusinessCard({ business, showMatchScore = false }: BusinessCardP
               <TrendingUp className="h-3 w-3 mr-1" />
               Revenue
             </div>
-            <div className="font-semibold text-sm">{formatCurrency(business.revenue)}</div>
+            {hasProfile ? (
+              <div className="font-semibold text-sm">{formatCurrency(business.revenue)}</div>
+            ) : (
+              <div className="flex items-center text-sm text-muted-foreground">
+                <Lock className="h-3 w-3 mr-1" />
+                <span>Not Disclosed</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -108,9 +125,18 @@ export function BusinessCard({ business, showMatchScore = false }: BusinessCardP
         </div>
 
         {/* Action Button */}
-        <Link href={`/marketplace/${business.id}`} className="w-full">
-          <Button variant="secondary" className="w-full font-medium" size="sm">View Details</Button>
-        </Link>
+        {hasProfile ? (
+          <Link href={`/marketplace/${business.id}`} className="w-full">
+            <Button variant="secondary" className="w-full font-medium" size="sm">View Details</Button>
+          </Link>
+        ) : (
+          <Link href="/marketplace/welcome" className="w-full">
+            <Button className="w-full font-medium" size="sm">
+              <Lock className="h-3 w-3 mr-1" />
+              Sign Up to View
+            </Button>
+          </Link>
+        )}
       </CardContent>
     </Card>
   );

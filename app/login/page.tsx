@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ShoppingBag, Store, ArrowRight, Briefcase } from "lucide-react";
+import { ShoppingBag, Store, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [userType, setUserType] = useState<"buyer" | "seller" | "pe" | "">("");
+  const [userType, setUserType] = useState<"buyer" | "seller" | "">("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -35,12 +35,10 @@ export default function LoginPage() {
       router.push('/dashboard/buyer');
     } else if (userType === "seller") {
       router.push('/dashboard/seller');
-    } else if (userType === "pe") {
-      router.push('/dashboard');
     }
   };
 
-  const handleDemoAccess = (type: "buyer" | "seller" | "pe") => {
+  const handleDemoAccess = (type: "buyer" | "seller") => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('userType', type);
       localStorage.setItem('isLoggedIn', 'true');
@@ -50,8 +48,6 @@ export default function LoginPage() {
       router.push('/dashboard/buyer');
     } else if (type === "seller") {
       router.push('/dashboard/seller');
-    } else if (type === "pe") {
-      router.push('/dashboard');
     }
   };
 
@@ -67,7 +63,7 @@ export default function LoginPage() {
             {/* User Type Selection */}
             <div className="space-y-2">
               <Label className="text-sm font-medium">Select Role</Label>
-              <RadioGroup value={userType} onValueChange={(value) => setUserType(value as "buyer" | "seller" | "pe")}>
+              <RadioGroup value={userType} onValueChange={(value) => setUserType(value as "buyer" | "seller")}>
                 <div className="flex items-center space-x-3 border rounded-lg p-3 hover:border-primary cursor-pointer transition-colors">
                   <RadioGroupItem value="buyer" id="buyer" />
                   <Label htmlFor="buyer" className="flex-1 cursor-pointer flex items-center gap-2">
@@ -80,13 +76,6 @@ export default function LoginPage() {
                   <Label htmlFor="seller" className="flex-1 cursor-pointer flex items-center gap-2">
                     <Store className="h-4 w-4 text-primary" />
                     <span className="font-medium">Seller</span>
-                  </Label>
-                </div>
-                <div className="flex items-center space-x-3 border rounded-lg p-3 hover:border-primary cursor-pointer transition-colors">
-                  <RadioGroupItem value="pe" id="pe" />
-                  <Label htmlFor="pe" className="flex-1 cursor-pointer flex items-center gap-2">
-                    <Briefcase className="h-4 w-4 text-primary" />
-                    <span className="font-medium">PE Firm</span>
                   </Label>
                 </div>
               </RadioGroup>
@@ -133,7 +122,7 @@ export default function LoginPage() {
             </div>
 
             {/* First Time User */}
-            <Link href="/marketplace/expert-mode">
+            <Link href="/marketplace/welcome">
               <Button
                 type="button"
                 variant="outline"

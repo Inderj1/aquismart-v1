@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Info, MapPin, DollarSign, TrendingUp, Sparkles } from "lucide-react";
+import { Info, MapPin, DollarSign, TrendingUp, Sparkles, Lock } from "lucide-react";
 import { OnboardingQuestionnaire, OnboardingData } from "@/components/businesses/OnboardingQuestionnaire";
 import { Business, businessApi } from "@/lib/api/businesses";
 import { useRouter } from "next/navigation";
@@ -15,9 +15,17 @@ export function HeroSection2() {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [featuredDeals, setFeaturedDeals] = useState<Business[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hasProfile, setHasProfile] = useState(false);
 
   useEffect(() => {
     loadFeaturedDeals();
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const profile = localStorage.getItem('welcomeProfile') || localStorage.getItem('buyerProfile');
+      setHasProfile(!!profile);
+    }
   }, []);
 
   const loadFeaturedDeals = async () => {
@@ -146,10 +154,17 @@ export function HeroSection2() {
                               <DollarSign className="h-3 w-3 text-muted-foreground" />
                               <span className="font-semibold text-xs">{formatCurrency(deal.askingPrice)}</span>
                             </div>
-                            <div className="flex items-center gap-1">
-                              <TrendingUp className="h-3 w-3 text-muted-foreground" />
-                              <span className="text-xs">{formatCurrency(deal.revenue)}/yr</span>
-                            </div>
+                            {hasProfile ? (
+                              <div className="flex items-center gap-1">
+                                <TrendingUp className="h-3 w-3 text-muted-foreground" />
+                                <span className="text-xs">{formatCurrency(deal.revenue)}/yr</span>
+                              </div>
+                            ) : (
+                              <div className="flex items-center gap-1">
+                                <Lock className="h-3 w-3 text-muted-foreground" />
+                                <span className="text-xs text-muted-foreground">Sign up for revenue</span>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>

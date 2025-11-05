@@ -1,49 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ShoppingBag, Store } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { LpNavbar1 } from "@/components/pro-blocks/landing-page/lp-navbars/lp-navbar-1";
 
 interface QuestionnaireData {
-  userType: "buyer" | "seller" | "pe" | "";
+  userType: "buyer" | "seller" | "";
   [key: string]: any;
 }
 
-export default function ExpertModePage() {
+export default function WelcomePage() {
   const router = useRouter();
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [data, setData] = useState<QuestionnaireData>({
     userType: "",
   });
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Load profile data from previous onboarding
-    if (typeof window !== 'undefined') {
-      const profileData = localStorage.getItem('buyerProfile');
-      if (profileData) {
-        const profile = JSON.parse(profileData);
-        // Map 'buy' to 'buyer' and 'sell' to 'seller'
-        const userType = profile.userType === 'buy' ? 'buyer' : profile.userType === 'sell' ? 'seller' : profile.userType;
-        setData({
-          userType,
-          industry: profile.industry,
-          location: profile.location,
-        });
-        setLoading(false);
-      } else {
-        // No profile found, redirect to get matched first
-        router.push('/marketplace');
-      }
-    }
-  }, [router]);
 
   const buyerQuestions = [
     {
@@ -51,6 +27,18 @@ export default function ExpertModePage() {
       question: "What is your budget range?",
       type: "radio",
       options: ["Under $500K", "$500K - $1M", "$1M - $5M", "$5M - $10M", "Over $10M"]
+    },
+    {
+      id: "industries",
+      question: "Which industries are you interested in?",
+      type: "radio",
+      options: ["Technology", "Healthcare", "Retail", "Food & Beverage", "Manufacturing", "Real Estate", "Professional Services", "Financial Services", "Multiple industries"]
+    },
+    {
+      id: "location",
+      question: "Preferred location(s)?",
+      type: "radio",
+      options: ["Boston, MA", "New York, NY", "San Francisco, CA", "Los Angeles, CA", "Chicago, IL", "Austin, TX", "Seattle, WA", "Remote/Nationwide", "Other"]
     },
     {
       id: "businessSize",
@@ -97,6 +85,12 @@ export default function ExpertModePage() {
   ];
 
   const sellerQuestions = [
+    {
+      id: "businessType",
+      question: "What type of business are you selling?",
+      type: "radio",
+      options: ["Technology/SaaS", "Restaurant/Food Service", "E-commerce", "Retail Store", "Manufacturing", "Healthcare", "Professional Services", "Real Estate", "Other"]
+    },
     {
       id: "yearsInBusiness",
       question: "How long has the business been operating?",
@@ -153,78 +147,19 @@ export default function ExpertModePage() {
     }
   ];
 
-  const peQuestions = [
-    {
-      id: "fundSize",
-      question: "What is your fund size?",
-      type: "radio",
-      options: ["Under $10M", "$10M - $50M", "$50M - $100M", "$100M - $500M", "Over $500M"]
-    },
-    {
-      id: "targetIndustries",
-      question: "Target industries for investment?",
-      type: "radio",
-      options: ["Technology", "Healthcare", "Consumer Goods", "Financial Services", "Manufacturing", "Real Estate", "Professional Services", "Multiple sectors", "Sector agnostic"]
-    },
-    {
-      id: "dealSize",
-      question: "Typical deal size?",
-      type: "radio",
-      options: ["Under $1M", "$1M - $5M", "$5M - $20M", "$20M - $100M", "Over $100M"]
-    },
-    {
-      id: "investmentStage",
-      question: "Preferred investment stage?",
-      type: "radio",
-      options: ["Early stage", "Growth stage", "Mature/profitable", "Distressed/turnaround", "All stages"]
-    },
-    {
-      id: "revenueRequirement",
-      question: "Minimum annual revenue requirement?",
-      type: "radio",
-      options: ["Pre-revenue acceptable", "$500K+", "$1M+", "$5M+", "$10M+", "$50M+"]
-    },
-    {
-      id: "profitabilityRequirement",
-      question: "Profitability requirement?",
-      type: "radio",
-      options: ["Must be profitable", "EBITDA positive", "Path to profitability", "Growth over profit", "No requirement"]
-    },
-    {
-      id: "holdPeriod",
-      question: "Expected hold period?",
-      type: "radio",
-      options: ["Short-term (1-3 years)", "Medium-term (3-5 years)", "Long-term (5-10 years)", "10+ years", "Flexible"]
-    },
-    {
-      id: "investmentStrategy",
-      question: "Primary investment strategy?",
-      type: "radio",
-      options: ["Control/majority stake", "Minority growth equity", "Platform acquisition", "Add-on acquisition", "Recapitalization", "Mixed strategy"]
-    },
-    {
-      id: "geography",
-      question: "Geographic focus?",
-      type: "radio",
-      options: ["North America", "United States only", "Northeast US", "West Coast US", "Global", "Europe", "Asia Pacific", "Latin America", "Multi-regional"]
-    },
-    {
-      id: "dealFlow",
-      question: "Current deal flow activity?",
-      type: "radio",
-      options: ["Actively deploying capital", "Actively sourcing deals", "Selectively looking", "Recently raised fund", "Exploring opportunities"]
-    }
-  ];
-
   const getQuestions = () => {
     if (data.userType === "buyer") return buyerQuestions;
     if (data.userType === "seller") return sellerQuestions;
-    if (data.userType === "pe") return peQuestions;
     return [];
   };
 
   const questions = getQuestions();
   const currentQuestion = questions[step - 1];
+
+  const handleUserTypeSelect = (type: "buyer" | "seller") => {
+    setData({ ...data, userType: type });
+    setStep(1);
+  };
 
   const handleNext = () => {
     if (step < questions.length) {
@@ -235,17 +170,17 @@ export default function ExpertModePage() {
   };
 
   const handleBack = () => {
-    if (step > 1) {
+    if (step > 0) {
       setStep(step - 1);
     } else {
-      router.push('/marketplace/matches');
+      router.push('/login');
     }
   };
 
   const handleComplete = () => {
     // Save data to localStorage
     if (typeof window !== 'undefined') {
-      localStorage.setItem('expertModeProfile', JSON.stringify(data));
+      localStorage.setItem('welcomeProfile', JSON.stringify(data));
     }
 
     // Redirect based on user type
@@ -253,8 +188,6 @@ export default function ExpertModePage() {
       router.push('/marketplace/go-wild');
     } else if (data.userType === "seller") {
       router.push('/dashboard/seller');
-    } else if (data.userType === "pe") {
-      router.push('/dashboard');
     }
   };
 
@@ -264,14 +197,51 @@ export default function ExpertModePage() {
     }
   };
 
-  // Loading state while fetching profile
-  if (loading) {
+  // User Type Selection (Step 0)
+  if (step === 0) {
     return (
       <div className="min-h-screen bg-background">
         <LpNavbar1 />
         <div className="container mx-auto px-6 py-12">
-          <div className="max-w-2xl mx-auto flex items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          <div className="max-w-2xl mx-auto">
+            <Button variant="ghost" className="mb-6" onClick={handleBack}>
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Login
+            </Button>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-center text-2xl">Welcome to AcquiSmart</CardTitle>
+                <p className="text-center text-muted-foreground mt-2">
+                  Tell us about yourself to get started
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Label className="text-lg font-medium">What do you want to do?</Label>
+                <div className="grid grid-cols-1 gap-4">
+                  <div
+                    onClick={() => handleUserTypeSelect("buyer")}
+                    className="flex items-center space-x-4 border rounded-lg p-6 hover:border-primary cursor-pointer transition-colors"
+                  >
+                    <ShoppingBag className="h-8 w-8 text-primary" />
+                    <div>
+                      <div className="font-semibold text-lg">Buyer</div>
+                      <div className="text-sm text-muted-foreground">Looking to acquire a business</div>
+                    </div>
+                  </div>
+                  <div
+                    onClick={() => handleUserTypeSelect("seller")}
+                    className="flex items-center space-x-4 border rounded-lg p-6 hover:border-primary cursor-pointer transition-colors"
+                  >
+                    <Store className="h-8 w-8 text-primary" />
+                    <div>
+                      <div className="font-semibold text-lg">Seller</div>
+                      <div className="text-sm text-muted-foreground">Selling my business</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
@@ -291,10 +261,6 @@ export default function ExpertModePage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-center text-2xl mb-2">Expert Mode</CardTitle>
-              <p className="text-center text-muted-foreground text-sm mb-4">
-                Tell us more to get highly personalized recommendations
-              </p>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm text-muted-foreground">
                   Question {step} of {questions.length}
@@ -326,24 +292,6 @@ export default function ExpertModePage() {
                     </div>
                   ))}
                 </RadioGroup>
-              )}
-
-              {currentQuestion?.type === "input" && (
-                <Input
-                  placeholder={(currentQuestion as any).placeholder || ""}
-                  value={data[currentQuestion.id] || ""}
-                  onChange={(e) => handleInputChange(e.target.value)}
-                  className="text-lg p-6"
-                />
-              )}
-
-              {currentQuestion?.type === "textarea" && (
-                <Textarea
-                  placeholder={(currentQuestion as any).placeholder || ""}
-                  value={data[currentQuestion.id] || ""}
-                  onChange={(e) => handleInputChange(e.target.value)}
-                  className="text-lg p-6 min-h-32"
-                />
               )}
 
               <div className="flex gap-3">
