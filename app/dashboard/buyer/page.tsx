@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, Search, Heart, ShoppingBag, TrendingUp, Building2, FileText } from "lucide-react";
+import { ArrowUpRight, Search, Heart, ShoppingBag, TrendingUp, Building2, FileText, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { LpNavbar1 } from "@/components/pro-blocks/landing-page/lp-navbars/lp-navbar-1";
 
@@ -166,7 +166,7 @@ export default function BuyerDashboard() {
             <CardDescription>Get started with your business acquisition journey</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link href="/marketplace">
                 <div className="p-6 border rounded-lg hover:bg-accent transition-colors cursor-pointer">
                   <Search className="h-8 w-8 text-primary mb-3" />
@@ -182,6 +182,15 @@ export default function BuyerDashboard() {
                   <h3 className="font-semibold mb-2">Get Matched</h3>
                   <p className="text-sm text-muted-foreground">
                     AI-powered business recommendations
+                  </p>
+                </div>
+              </Link>
+              <Link href="/dashboard/buyer/resources">
+                <div className="p-6 border rounded-lg hover:bg-accent transition-colors cursor-pointer bg-primary/5 border-primary/20">
+                  <BookOpen className="h-8 w-8 text-primary mb-3" />
+                  <h3 className="font-semibold mb-2">Buyer's Guide</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Learn how to buy a business successfully
                   </p>
                 </div>
               </Link>
