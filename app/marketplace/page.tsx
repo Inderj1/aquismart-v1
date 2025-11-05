@@ -105,6 +105,12 @@ export default function MarketplacePage() {
     loadBusinesses();
   }, [selectedCategory]);
 
+  useEffect(() => {
+    if (showOnboarding && typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [showOnboarding]);
+
   const loadBusinesses = async () => {
     try {
       setLoading(true);
@@ -157,10 +163,14 @@ export default function MarketplacePage() {
 
   if (showOnboarding) {
     return (
-      <OnboardingQuestionnaire
-        onComplete={handleOnboardingComplete}
-        onSkip={() => setShowOnboarding(false)}
-      />
+      <main>
+        <LpNavbar1 />
+        <OnboardingQuestionnaire
+          onComplete={handleOnboardingComplete}
+          onSkip={() => setShowOnboarding(false)}
+          onBack={() => setShowOnboarding(false)}
+        />
+      </main>
     );
   }
 

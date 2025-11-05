@@ -65,10 +65,10 @@ export function LpNavbar1() {
   };
 
   return (
-    <nav className="bg-background sticky top-0 isolate z-50 border-b py-2.5 md:py-3">
+    <nav className="bg-background sticky top-0 isolate z-50 border-b py-2.5 md:py-3 pointer-events-auto">
       <div className="relative container m-auto flex flex-col justify-between gap-3 px-6 md:flex-row md:items-center md:gap-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center cursor-pointer">
             <span className="text-xl font-bold">
               <span className="text-blue-600">ACQUI</span>
               <span className="text-orange-600">SMART</span>

@@ -28,6 +28,12 @@ export function HeroSection2() {
     }
   }, []);
 
+  useEffect(() => {
+    if (showOnboarding && typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [showOnboarding]);
+
   const loadFeaturedDeals = async () => {
     try {
       const response = await businessApi.search({ pageSize: 2 });
@@ -87,10 +93,13 @@ export function HeroSection2() {
 
   if (showOnboarding) {
     return (
-      <OnboardingQuestionnaire
-        onComplete={handleOnboardingComplete}
-        onSkip={() => setShowOnboarding(false)}
-      />
+      <div className="w-full">
+        <OnboardingQuestionnaire
+          onComplete={handleOnboardingComplete}
+          onSkip={() => setShowOnboarding(false)}
+          onBack={() => setShowOnboarding(false)}
+        />
+      </div>
     );
   }
 

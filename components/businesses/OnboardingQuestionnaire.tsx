@@ -23,6 +23,7 @@ export interface OnboardingData {
 interface OnboardingQuestionnaireProps {
   onComplete: (data: OnboardingData) => void;
   onSkip?: () => void;
+  onBack?: () => void;
 }
 
 const INDUSTRIES = [
@@ -54,7 +55,7 @@ const LOCATIONS = [
   "Atlanta, GA",
 ];
 
-export function OnboardingQuestionnaire({ onComplete, onSkip }: OnboardingQuestionnaireProps) {
+export function OnboardingQuestionnaire({ onComplete, onSkip, onBack }: OnboardingQuestionnaireProps) {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [data, setData] = useState<OnboardingData>({
@@ -76,6 +77,8 @@ export function OnboardingQuestionnaire({ onComplete, onSkip }: OnboardingQuesti
   const handleBack = () => {
     if (step > 1) {
       setStep(step - 1);
+    } else if (onBack) {
+      onBack();
     } else {
       router.push('/');
     }
@@ -95,7 +98,7 @@ export function OnboardingQuestionnaire({ onComplete, onSkip }: OnboardingQuesti
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-6">
+    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-background p-6 pt-20 relative z-0">
       <div className="w-full max-w-2xl">
         {/* Progress indicator */}
         <div className="mb-8">
