@@ -119,6 +119,8 @@ export default function BuyerProfilePage() {
       // Save to localStorage for now
       if (typeof window !== 'undefined') {
         localStorage.setItem('buyerProfile', JSON.stringify(updateData));
+        // Trigger custom event to update navbar
+        window.dispatchEvent(new Event('loginStatusChange'));
       }
 
       setProfile(updateData as BuyerProfile);

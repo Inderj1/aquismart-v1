@@ -181,11 +181,13 @@ export default function WelcomePage() {
     // Save data to localStorage
     if (typeof window !== 'undefined') {
       localStorage.setItem('welcomeProfile', JSON.stringify(data));
+      // Trigger custom event to update navbar
+      window.dispatchEvent(new Event('loginStatusChange'));
     }
 
     // Redirect based on user type
     if (data.userType === "buyer") {
-      router.push('/marketplace/go-wild');
+      router.push('/dashboard/buyer');
     } else if (data.userType === "seller") {
       router.push('/dashboard/seller');
     }

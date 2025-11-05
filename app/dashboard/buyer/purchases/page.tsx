@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,7 @@ import { LpNavbar1 } from "@/components/pro-blocks/landing-page/lp-navbars/lp-na
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function BuyerPurchasesPage() {
+  const [activeTab, setActiveTab] = useState("timeline");
   const activePurchases = [
     {
       id: 1,
@@ -155,7 +157,7 @@ export default function BuyerPurchasesPage() {
                       </div>
                     </div>
 
-                    <Tabs defaultValue="timeline" className="w-full">
+                    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                       <TabsList className="grid w-full grid-cols-3">
                         <TabsTrigger value="timeline">Timeline</TabsTrigger>
                         <TabsTrigger value="documents">Documents</TabsTrigger>

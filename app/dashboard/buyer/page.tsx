@@ -101,6 +101,42 @@ export default function BuyerDashboard() {
           ))}
         </div>
 
+        {/* Featured: Buyer's Guide */}
+        <Card className="mb-8 border-primary/50 bg-gradient-to-br from-primary/5 to-background">
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between gap-6">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-3 rounded-lg bg-primary/10">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold">New to Business Acquisition?</h2>
+                    <p className="text-muted-foreground">Learn everything you need to successfully buy a business</p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Access our comprehensive guide covering financing options, due diligence, valuation methods, deal structuring, and post-acquisition integration. Perfect for first-time buyers.
+                </p>
+                <Link href="/dashboard/buyer/resources">
+                  <Button size="lg" className="w-full sm:w-auto">
+                    <BookOpen className="mr-2 h-5 w-5" />
+                    Explore Buyer's Guide
+                    <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="hidden lg:block">
+                <img
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&q=80"
+                  alt="Business planning"
+                  className="rounded-lg w-48 h-32 object-cover"
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Saved Businesses */}
           <Card className="lg:col-span-2">
@@ -186,7 +222,7 @@ export default function BuyerDashboard() {
                 </div>
               </Link>
               <Link href="/dashboard/buyer/resources">
-                <div className="p-6 border rounded-lg hover:bg-accent transition-colors cursor-pointer bg-primary/5 border-primary/20">
+                <div className="p-6 border rounded-lg hover:bg-accent transition-colors cursor-pointer">
                   <BookOpen className="h-8 w-8 text-primary mb-3" />
                   <h3 className="font-semibold mb-2">Buyer's Guide</h3>
                   <p className="text-sm text-muted-foreground">

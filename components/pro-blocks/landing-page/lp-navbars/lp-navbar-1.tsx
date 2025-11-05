@@ -45,10 +45,27 @@ export function LpNavbar1() {
 
   useEffect(() => {
     // Check if user has a profile (logged in)
-    if (typeof window !== 'undefined') {
-      const profile = localStorage.getItem('welcomeProfile') || localStorage.getItem('buyerProfile');
-      setIsLoggedIn(!!profile);
-    }
+    const checkLoginStatus = () => {
+      if (typeof window !== 'undefined') {
+        const profile = localStorage.getItem('welcomeProfile') ||
+                       localStorage.getItem('buyerProfile') ||
+                       localStorage.getItem('expertModeProfile');
+        setIsLoggedIn(!!profile);
+      }
+    };
+
+    checkLoginStatus();
+
+    // Listen for storage changes (including from same window)
+    window.addEventListener('storage', checkLoginStatus);
+
+    // Custom event for same-window updates
+    window.addEventListener('loginStatusChange', checkLoginStatus);
+
+    return () => {
+      window.removeEventListener('storage', checkLoginStatus);
+      window.removeEventListener('loginStatusChange', checkLoginStatus);
+    };
   }, [pathname]);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);

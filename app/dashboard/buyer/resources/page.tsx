@@ -16,12 +16,14 @@ import {
   Users,
   CheckCircle2,
   ArrowRight,
-  Download
+  Download,
+  ArrowLeft
 } from "lucide-react";
 import Link from "next/link";
 
 export default function BuyerResourcesPage() {
   const [completedSections, setCompletedSections] = useState<string[]>([]);
+  const [sectionTabs, setSectionTabs] = useState<Record<string, string>>({});
 
   const toggleSection = (sectionId: string) => {
     setCompletedSections(prev =>
@@ -29,6 +31,14 @@ export default function BuyerResourcesPage() {
         ? prev.filter(id => id !== sectionId)
         : [...prev, sectionId]
     );
+  };
+
+  const getSectionTab = (sectionId: string) => {
+    return sectionTabs[sectionId] || "key-points";
+  };
+
+  const setSectionTab = (sectionId: string, tab: string) => {
+    setSectionTabs(prev => ({ ...prev, [sectionId]: tab }));
   };
 
   const sections = [
@@ -291,6 +301,14 @@ export default function BuyerResourcesPage() {
 
   return (
     <div className="container mx-auto px-6 py-8">
+      {/* Back Button */}
+      <Link href="/dashboard/buyer">
+        <Button variant="ghost" className="mb-6">
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Dashboard
+        </Button>
+      </Link>
+
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
@@ -386,7 +404,7 @@ export default function BuyerResourcesPage() {
                 </div>
 
                 {/* Tabs for different content types */}
-                <Tabs defaultValue="key-points" className="w-full">
+                <Tabs value={getSectionTab(section.id)} onValueChange={(tab) => setSectionTab(section.id, tab)} className="w-full">
                   <TabsList className="grid w-full grid-cols-3">
                     <TabsTrigger value="key-points">Key Points</TabsTrigger>
                     <TabsTrigger value="checklist">Checklist</TabsTrigger>

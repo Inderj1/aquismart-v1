@@ -26,8 +26,22 @@ export default function LoginPage() {
 
     // Mock login - in production, this would call an API
     if (typeof window !== 'undefined') {
+      // Create a profile object
+      const profileData = {
+        id: 'mock-profile-id',
+        userType: userType === 'buyer' ? 'buy' : 'sell',
+        email: email,
+        // These will be filled in later through onboarding if needed
+        industry: '',
+        location: '',
+      };
+
+      localStorage.setItem('welcomeProfile', JSON.stringify(profileData));
       localStorage.setItem('userType', userType);
       localStorage.setItem('isLoggedIn', 'true');
+
+      // Trigger custom event to update navbar
+      window.dispatchEvent(new Event('loginStatusChange'));
     }
 
     // Redirect to appropriate dashboard
@@ -40,8 +54,21 @@ export default function LoginPage() {
 
   const handleDemoAccess = (type: "buyer" | "seller") => {
     if (typeof window !== 'undefined') {
+      // Create a profile object
+      const profileData = {
+        id: 'mock-profile-id',
+        userType: type === 'buyer' ? 'buy' : 'sell',
+        // These will be filled in later through onboarding if needed
+        industry: '',
+        location: '',
+      };
+
+      localStorage.setItem('welcomeProfile', JSON.stringify(profileData));
       localStorage.setItem('userType', type);
       localStorage.setItem('isLoggedIn', 'true');
+
+      // Trigger custom event to update navbar
+      window.dispatchEvent(new Event('loginStatusChange'));
     }
 
     if (type === "buyer") {

@@ -81,10 +81,20 @@ export function HeroSection2() {
 
       if (typeof window !== 'undefined') {
         localStorage.setItem('buyerProfile', JSON.stringify(profileData));
+        // Trigger custom event to update navbar
+        window.dispatchEvent(new Event('loginStatusChange'));
       }
 
       setShowOnboarding(false);
-      router.push('/marketplace/matches');
+
+      // Redirect based on user type
+      if (data.userType === 'buy') {
+        router.push('/dashboard/buyer');
+      } else if (data.userType === 'sell') {
+        router.push('/dashboard/seller');
+      } else {
+        router.push('/marketplace/matches');
+      }
     } catch (err) {
       console.error('Error saving profile:', err);
       alert('Failed to save profile. Please try again.');
