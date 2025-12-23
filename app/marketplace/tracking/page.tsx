@@ -4,39 +4,26 @@ import { useEffect, useState } from "react";
 import { BusinessCard } from "@/components/businesses/BusinessCard";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { SavedBusiness, businessApi } from "@/lib/api/businesses";
 import { Heart, MessageSquare, Star, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { useSavedItemsStore } from "@/store/savedItems";
 
 export default function DealTrackingPage() {
-  const [savedDeals, setSavedDeals] = useState<SavedBusiness[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState("saved");
 
+  // Use Zustand store
+  const {
+    savedBusinesses: savedDeals,
+    contactedBusinesses: contactedDeals,
+    starredBusinesses: starredDeals,
+    isLoading: loading,
+    error,
+    fetchSavedBusinesses,
+  } = useSavedItemsStore();
+
   useEffect(() => {
-    loadSavedDeals();
-  }, []);
-
-  const loadSavedDeals = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      // Use the backend API
-      const response = await businessApi.getSaved();
-      setSavedDeals(response.data);
-    } catch (err: any) {
-      setError(err.message || 'Failed to load saved deals');
-      console.error('Error loading saved deals:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Mock data for contacted deals - in production this would come from an API
-  const contactedDeals = savedDeals.filter((_, index) => index % 2 === 0);
-  const starredDeals = savedDeals.filter((_, index) => index % 3 === 0);
+    fetchSavedBusinesses();
+  }, [fetchSavedBusinesses]);
 
   if (loading) {
     return (

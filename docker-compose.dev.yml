@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  # ===== Python FastAPI Service (Development) =====
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "15000:8000"
+    environment:
+      - ENVIRONMENT=development
+      - DEBUG=true
+      # Database
+      - DATABASE_URL=postgresql+asyncpg://acquismart:changeme@postgres:5432/acquismart
+      - REDIS_URL=redis://redis:6379/0
+      - OPENSEARCH_URL=http://opensearch:9200
+      # AWS Cognito
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - COGNITO_USER_POOL_ID=${COGNITO_USER_POOL_ID}
+      - COGNITO_CLIENT_ID=${COGNITO_CLIENT_ID}
+      - COGNITO_CLIENT_SECRET=${COGNITO_CLIENT_SECRET}
+      - COGNITO_DOMAIN=${COGNITO_DOMAIN}
+      - COGNITO_REDIRECT_URI=${COGNITO_REDIRECT_URI:-http://localhost:3000/auth/callback}
+      # Stripe (optional for testing)
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY:-}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET:-}
+      # S3 (optional for testing)
+      - S3_BUCKET=acquismart-documents-dev
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ===== PostgreSQL =====
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "15001:5432"
+    environment:
+      - POSTGRES_DB=acquismart
+      - POSTGRES_USER=acquismart
+      - POSTGRES_PASSWORD=changeme
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U acquismart"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===== Redis =====
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "15002:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ===== OpenSearch (optional for dev) =====
+  opensearch:
+    image: opensearchproject/opensearch:2.12.0
+    ports:
+      - "15003:9200"
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms256m -Xmx256m"
+    volumes:
+      - opensearch_data:/usr/share/opensearch/data
+    profiles:
+      - full  # Only start with --profile full
+
+volumes:
+  postgres_data:
+  redis_data:
+  opensearch_data:

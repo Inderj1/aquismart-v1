@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { useAuthStore } from "@/store/auth";
 
 interface NavMenuItemsProps {
   className?: string;
@@ -39,46 +40,30 @@ const NavMenuItems = ({ className, isLoggedIn, onLogout }: NavMenuItemsProps) =>
 
 export function LpNavbar1() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
+  // Use Zustand store for auth state
+  const { isAuthenticated, logout, initializeAuth } = useAuthStore();
+
   useEffect(() => {
-    // Check if user has a profile (logged in)
-    const checkLoginStatus = () => {
-      if (typeof window !== 'undefined') {
-        const profile = localStorage.getItem('welcomeProfile') ||
-                       localStorage.getItem('buyerProfile') ||
-                       localStorage.getItem('expertModeProfile');
-        setIsLoggedIn(!!profile);
-      }
-    };
-
-    checkLoginStatus();
-
-    // Listen for storage changes (including from same window)
-    window.addEventListener('storage', checkLoginStatus);
-
-    // Custom event for same-window updates
-    window.addEventListener('loginStatusChange', checkLoginStatus);
-
-    return () => {
-      window.removeEventListener('storage', checkLoginStatus);
-      window.removeEventListener('loginStatusChange', checkLoginStatus);
-    };
-  }, [pathname]);
+    // Initialize auth state from cookies on mount
+    initializeAuth();
+  }, [initializeAuth]);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   const handleLogout = () => {
+    // Clear auth tokens via Zustand store
+    logout();
+    // Also clear legacy profile data
     if (typeof window !== 'undefined') {
       localStorage.removeItem('welcomeProfile');
       localStorage.removeItem('buyerProfile');
       localStorage.removeItem('expertModeProfile');
-      setIsLoggedIn(false);
-      setIsMenuOpen(false);
-      router.push('/');
     }
+    setIsMenuOpen(false);
+    router.push('/');
   };
 
   return (
@@ -103,8 +88,8 @@ export function LpNavbar1() {
 
         {/* Desktop Navigation */}
         <div className="hidden w-full flex-row justify-end gap-5 md:flex">
-          <NavMenuItems isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-          {!isLoggedIn && (
+          <NavMenuItems isLoggedIn={isAuthenticated} onLogout={handleLogout} />
+          {!isAuthenticated && (
             <Link href="/early-access">
               <Button>Join for Early Access</Button>
             </Link>
@@ -114,8 +99,8 @@ export function LpNavbar1() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="flex w-full flex-col justify-end gap-5 pb-2.5 md:hidden">
-            <NavMenuItems isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-            {!isLoggedIn && (
+            <NavMenuItems isLoggedIn={isAuthenticated} onLogout={handleLogout} />
+            {!isAuthenticated && (
               <Link href="/early-access">
                 <Button className="w-full">Join for Early Access</Button>
               </Link>

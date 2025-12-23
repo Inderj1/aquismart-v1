@@ -4,106 +4,32 @@ import { useEffect, useState } from "react";
 import { LpNavbar1 } from "@/components/pro-blocks/landing-page/lp-navbars/lp-navbar-1";
 import { Footer1 } from "@/components/pro-blocks/landing-page/footers/footer-1";
 import { Button } from "@/components/ui/button";
-import { Tagline } from "@/components/pro-blocks/landing-page/tagline";
 import { Badge } from "@/components/ui/badge";
-import { Search, MapPin, DollarSign, TrendingUp, Shield, Star, Sparkles, Heart, FolderOpen } from "lucide-react";
+import { Search, TrendingUp, Shield, Star, Sparkles, Heart, FolderOpen } from "lucide-react";
 import Link from "next/link";
 import { OnboardingQuestionnaire, OnboardingData } from "@/components/businesses/OnboardingQuestionnaire";
 import { BusinessCard } from "@/components/businesses/BusinessCard";
-import { Business, BusinessSearchParams, businessApi } from "@/lib/api/businesses";
 import { useRouter } from "next/navigation";
+import { useBusinessStore } from "@/store/business";
+import { useSearchStore, INDUSTRY_CATEGORIES } from "@/store/search";
+import { useProfileStore } from "@/store/profile";
 
 export default function MarketplacePage() {
   const router = useRouter();
   const [showOnboarding, setShowOnboarding] = useState(false);
-  const [businesses, setBusinesses] = useState<Business[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All Industries");
-  const listings = [
-    {
-      id: 1,
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80",
-      category: "SaaS",
-      title: "B2B Marketing Automation Platform",
-      location: "Austin, TX",
-      revenue: "$2.5M ARR",
-      price: "$12.5M",
-      matchScore: 95,
-      verified: true,
-    },
-    {
-      id: 2,
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80",
-      category: "E-commerce",
-      title: "Premium Outdoor Gear Store",
-      location: "Denver, CO",
-      revenue: "$3.2M/year",
-      price: "$8M",
-      matchScore: 88,
-      verified: true,
-    },
-    {
-      id: 3,
-      image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=600&q=80",
-      category: "Healthcare",
-      title: "Medical Billing Services",
-      location: "Phoenix, AZ",
-      revenue: "$1.8M/year",
-      price: "$5.4M",
-      matchScore: 92,
-      verified: true,
-    },
-    {
-      id: 4,
-      image: "https://images.unsplash.com/photo-1556155092-490a1ba16284?w=600&q=80",
-      category: "Manufacturing",
-      title: "Custom Packaging Solutions",
-      location: "Chicago, IL",
-      revenue: "$4.1M/year",
-      price: "$15M",
-      matchScore: 85,
-      verified: true,
-    },
-    {
-      id: 5,
-      image: "https://images.unsplash.com/photo-1554224311-beee4c2e7e38?w=600&q=80",
-      category: "Food & Beverage",
-      title: "Specialty Coffee Roastery Chain",
-      location: "Seattle, WA",
-      revenue: "$2.8M/year",
-      price: "$7.5M",
-      matchScore: 90,
-      verified: true,
-    },
-    {
-      id: 6,
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
-      category: "Technology",
-      title: "Mobile App Development Agency",
-      location: "San Francisco, CA",
-      revenue: "$1.5M/year",
-      price: "$4.5M",
-      matchScore: 87,
-      verified: true,
-    },
-  ];
 
-  const categories = [
-    "All Industries",
-    "SaaS & Software",
-    "E-commerce",
-    "Healthcare",
-    "Manufacturing",
-    "Food & Beverage",
-    "Professional Services",
-    "Technology",
-    "Real Estate",
-  ];
+  // Use Zustand stores
+  const { businesses, isLoading: loading, fetchBusinesses } = useBusinessStore();
+  const { query: searchQuery, setQuery: setSearchQuery, filters, setFilter, addRecentSearch } = useSearchStore();
+  const { saveOnboardingData } = useProfileStore();
+
+  const selectedCategory = filters.industry;
 
   useEffect(() => {
-    loadBusinesses();
-  }, [selectedCategory]);
+    // Fetch businesses when category changes
+    const params = selectedCategory !== "All Industries" ? { industry: selectedCategory } : undefined;
+    fetchBusinesses(params);
+  }, [selectedCategory, fetchBusinesses]);
 
   useEffect(() => {
     if (showOnboarding && typeof window !== 'undefined') {
@@ -111,44 +37,10 @@ export default function MarketplacePage() {
     }
   }, [showOnboarding]);
 
-  const loadBusinesses = async () => {
-    try {
-      setLoading(true);
-      const params: BusinessSearchParams = {};
-      if (selectedCategory !== "All Industries") {
-        params.industry = selectedCategory;
-      }
-
-      // Use the backend API
-      const response = await businessApi.search(params);
-      setBusinesses(response.data);
-    } catch (err) {
-      console.error('Error loading businesses:', err);
-      // Fallback to empty array if API fails
-      setBusinesses([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleOnboardingComplete = async (data: OnboardingData) => {
     try {
-      // Mock save until backend is ready
-      // In production: await businessApi.createBuyerProfile({ userType: data.userType, industry: data.industry, location: data.location });
-
-      // Save to localStorage for now
-      const profileData = {
-        id: 'mock-profile-id',
-        userType: data.userType,
-        industry: data.industry,
-        location: data.location,
-      };
-
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('buyerProfile', JSON.stringify(profileData));
-        // Trigger custom event to update navbar
-        window.dispatchEvent(new Event('loginStatusChange'));
-      }
+      // Save to profile store
+      saveOnboardingData(data);
 
       setShowOnboarding(false);
 
@@ -167,8 +59,15 @@ export default function MarketplacePage() {
   };
 
   const handleSearch = () => {
-    // In production, this would trigger an API search
-    console.log('Searching for:', searchQuery);
+    if (searchQuery.trim()) {
+      addRecentSearch(searchQuery);
+      // Trigger search with current query
+      fetchBusinesses({ q: searchQuery, industry: selectedCategory !== "All Industries" ? selectedCategory : undefined });
+    }
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setFilter('industry', category);
   };
 
   if (showOnboarding) {
@@ -248,12 +147,12 @@ export default function MarketplacePage() {
 
           {/* Quick Filters - More Compact */}
           <div className="mt-4 flex flex-wrap gap-1.5">
-            {categories.map((category) => (
+            {INDUSTRY_CATEGORIES.map((category) => (
               <Badge
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
                 className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors text-xs px-2.5 py-1"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => handleCategoryChange(category)}
               >
                 {category}
               </Badge>

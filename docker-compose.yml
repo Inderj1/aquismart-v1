@@ -1,15 +1,65 @@
 version: '3.8'
 
 services:
-  # Databases
+  # ===== Python FastAPI Service =====
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=development
+      # Database
+      - DATABASE_URL=postgresql+asyncpg://acquismart:${DB_PASSWORD:-changeme}@postgres:5432/acquismart
+      - REDIS_URL=redis://redis:6379/0
+      - OPENSEARCH_URL=http://opensearch:9200
+      # AWS Cognito
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+      - COGNITO_USER_POOL_ID=${COGNITO_USER_POOL_ID:-}
+      - COGNITO_CLIENT_ID=${COGNITO_CLIENT_ID:-}
+      - COGNITO_CLIENT_SECRET=${COGNITO_CLIENT_SECRET:-}
+      # Payments
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY:-}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET:-}
+      - STRIPE_PRICE_SUBSCRIPTION=${STRIPE_PRICE_SUBSCRIPTION:-}
+      - STRIPE_PRICE_VALUATION=${STRIPE_PRICE_VALUATION:-}
+      # AWS S3
+      - S3_BUCKET=${S3_BUCKET:-acquismart-documents}
+      # Email (Plunk)
+      - PLUNK_API_KEY=${PLUNK_API_KEY:-}
+      - FROM_EMAIL=${FROM_EMAIL:-noreply@acquismart.ai}
+      # LLM APIs
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+
+  # ===== Databases =====
   postgres:
     image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: acquismart
-      POSTGRES_USER: acquismart
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
     ports:
       - "5432:5432"
+    environment:
+      - POSTGRES_DB=acquismart
+      - POSTGRES_USER=acquismart
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -27,145 +77,20 @@ services:
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
-      timeout: 3s
+      timeout: 5s
       retries: 5
 
   opensearch:
     image: opensearchproject/opensearch:2.12.0
-    environment:
-      - discovery.type=single-node
-      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
-      - DISABLE_SECURITY_PLUGIN=true
     ports:
       - "9200:9200"
       - "9600:9600"
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
     volumes:
       - opensearch_data:/usr/share/opensearch/data
-
-  # API Gateway
-  gateway:
-    build:
-      context: ./backend/platform-gateway
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_NAME=acquismart
-      - DB_USER=acquismart
-      - DB_PASSWORD=${DB_PASSWORD:-changeme}
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-in-prod}
-    depends_on:
-      - postgres
-      - redis
-    volumes:
-      - ./backend/platform-gateway:/app
-      - /app/node_modules
-
-  # Ingestion Service
-  svc-ingestion:
-    build:
-      context: ./backend/svc-ingestion
-      dockerfile: Dockerfile
-    ports:
-      - "3001:3001"
-    environment:
-      - NODE_ENV=development
-      - DB_HOST=postgres
-      - REDIS_HOST=redis
-      - S3_ENDPOINT=${S3_ENDPOINT:-}
-      - S3_BUCKET=${S3_BUCKET:-acquismart-documents}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
-    depends_on:
-      - postgres
-      - redis
-    volumes:
-      - ./backend/svc-ingestion:/app
-      - /app/node_modules
-
-  # AI Document Service
-  svc-ai-document:
-    build:
-      context: ./backend/svc-ai-document
-      dockerfile: Dockerfile
-    ports:
-      - "8001:8001"
-    environment:
-      - ENVIRONMENT=development
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_NAME=acquismart
-      - DB_USER=acquismart
-      - DB_PASSWORD=${DB_PASSWORD:-changeme}
-      - REDIS_HOST=redis
-      - S3_ENDPOINT=${S3_ENDPOINT:-}
-      - S3_BUCKET=${S3_BUCKET:-acquismart-documents}
-    depends_on:
-      - postgres
-      - redis
-    volumes:
-      - ./backend/svc-ai-document:/app
-
-  # AI Entities Service
-  svc-ai-entities:
-    build:
-      context: ./backend/svc-ai-entities
-      dockerfile: Dockerfile
-    ports:
-      - "8002:8002"
-    environment:
-      - ENVIRONMENT=development
-      - DB_HOST=postgres
-      - REDIS_HOST=redis
-      - OPENSEARCH_HOST=opensearch
-      - OPENSEARCH_PORT=9200
-    depends_on:
-      - postgres
-      - redis
-      - opensearch
-    volumes:
-      - ./backend/svc-ai-entities:/app
-
-  # AI Valuation Service
-  svc-ai-valuation:
-    build:
-      context: ./backend/svc-ai-valuation
-      dockerfile: Dockerfile
-    ports:
-      - "8003:8003"
-    environment:
-      - ENVIRONMENT=development
-      - DB_HOST=postgres
-      - REDIS_HOST=redis
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-    depends_on:
-      - postgres
-      - redis
-    volumes:
-      - ./backend/svc-ai-valuation:/app
-
-  # AI Risk Service
-  svc-ai-risk:
-    build:
-      context: ./backend/svc-ai-risk
-      dockerfile: Dockerfile
-    ports:
-      - "8004:8004"
-    environment:
-      - ENVIRONMENT=development
-      - DB_HOST=postgres
-      - REDIS_HOST=redis
-    depends_on:
-      - postgres
-      - redis
-    volumes:
-      - ./backend/svc-ai-risk:/app
 
 volumes:
   postgres_data:

@@ -3,40 +3,32 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Building2, MapPin, DollarSign, TrendingUp, Star, Lock } from "lucide-react";
+import { Building2, MapPin, DollarSign, TrendingUp, Star, Lock, Heart } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useProfileStore } from "@/store/profile";
+import { useSavedItemsStore } from "@/store/savedItems";
+import { Business } from "@/lib/api/businesses";
 
-export interface Business {
-  id: string;
-  name: string;
-  industry: string;
-  location: string;
-  askingPrice: number;
-  revenue: number;
-  ebitda?: number;
-  description: string;
-  yearEstablished: number;
-  employees?: number;
-  matchScore?: number;
-  isFeatured?: boolean;
-  images?: string[];
-}
+export type { Business };
 
 interface BusinessCardProps {
   business: Business;
   showMatchScore?: boolean;
+  showSaveButton?: boolean;
 }
 
-export function BusinessCard({ business, showMatchScore = false }: BusinessCardProps) {
-  const [hasProfile, setHasProfile] = useState(false);
+export function BusinessCard({ business, showMatchScore = false, showSaveButton = true }: BusinessCardProps) {
+  const { hasProfile, initializeProfile } = useProfileStore();
+  const { isSaved, toggleSaved, isStarred, toggleStarred } = useSavedItemsStore();
+
+  const isBusinessSaved = isSaved(business.id);
+  const isBusinessStarred = isStarred(business.id);
+  const profileExists = hasProfile();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const profile = localStorage.getItem('welcomeProfile') || localStorage.getItem('buyerProfile');
-      setHasProfile(!!profile);
-    }
-  }, []);
+    initializeProfile();
+  }, [initializeProfile]);
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -45,6 +37,18 @@ export function BusinessCard({ business, showMatchScore = false }: BusinessCardP
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
+  };
+
+  const handleSaveClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    await toggleSaved(business);
+  };
+
+  const handleStarClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleStarred(business);
   };
 
   return (
@@ -72,6 +76,29 @@ export function BusinessCard({ business, showMatchScore = false }: BusinessCardP
             <Star className="h-3 w-3 mr-1" />
             {business.matchScore}% Match
           </Badge>
+        )}
+        {/* Save/Star buttons */}
+        {showSaveButton && profileExists && (
+          <div className="absolute top-2 right-2 flex gap-1">
+            <button
+              onClick={handleSaveClick}
+              className="p-1.5 rounded-full bg-background/80 hover:bg-background transition-colors"
+              title={isBusinessSaved ? "Remove from saved" : "Save business"}
+            >
+              <Heart
+                className={`h-4 w-4 ${isBusinessSaved ? 'fill-red-500 text-red-500' : 'text-muted-foreground'}`}
+              />
+            </button>
+            <button
+              onClick={handleStarClick}
+              className="p-1.5 rounded-full bg-background/80 hover:bg-background transition-colors"
+              title={isBusinessStarred ? "Unstar" : "Star as priority"}
+            >
+              <Star
+                className={`h-4 w-4 ${isBusinessStarred ? 'fill-yellow-500 text-yellow-500' : 'text-muted-foreground'}`}
+              />
+            </button>
+          </div>
         )}
       </div>
 
@@ -107,7 +134,7 @@ export function BusinessCard({ business, showMatchScore = false }: BusinessCardP
               <TrendingUp className="h-3 w-3 mr-1" />
               Revenue
             </div>
-            {hasProfile ? (
+            {profileExists ? (
               <div className="font-semibold text-sm">{formatCurrency(business.revenue)}</div>
             ) : (
               <div className="flex items-center text-sm text-muted-foreground">
@@ -125,7 +152,7 @@ export function BusinessCard({ business, showMatchScore = false }: BusinessCardP
         </div>
 
         {/* Action Button */}
-        {hasProfile ? (
+        {profileExists ? (
           <Link href={`/marketplace/${business.id}`} className="w-full">
             <Button variant="secondary" className="w-full font-medium" size="sm">View Details</Button>
           </Link>
